@@ -1,4 +1,7 @@
+# invisible files
 .DS_store
 
+# project files
+*.code-workspace
 *.sublime-project
 *.sublime-workspace
