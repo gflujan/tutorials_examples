@@ -1,5 +1,6 @@
 /* -------------------------------------------------------------------------- */
 /* ALL IMPORTS */
+/* LINK: GitHub repo for this project -- https://github.com/kukicado/jumpstart */
 /* -------------------------------------------------------------------------- */
 // React
 import React, { useEffect, useState } from 'react';
