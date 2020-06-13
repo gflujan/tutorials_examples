@@ -64,7 +64,7 @@ const Home = function () {
 
   return (
     <div className="bg-gray-100">
-      <form onSubmit={e => handleSearchChangeEvent(e)}>
+      <form onSubmit={e => executeSearch(e)}>
         <input
           className="w-full border border-gray-300 block py-2 px-5"
           name="Search Gifs"
