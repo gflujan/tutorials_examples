@@ -23,30 +23,6 @@ const mongodb = client.getServiceClient(
 );
 const db = mongodb.db('gif-battle');
 
-const getAllGifs = () => {
-  return client.callFunction('getAllGifs');
-};
-
-const getSingleGif = id => {
-  return client.callFunction('getSingleGif', [id]);
-};
-
-const voteForCaption = (id, caption, direction) => {
-  return db.collection('gifs').updateOne(
-    {
-      '_id': {
-        $oid: id,
-      },
-      'captions.text': caption.text,
-    },
-    {
-      $inc: {
-        'captions.$.votes': direction,
-      },
-    },
-  );
-};
-
 const addCaption = (id, caption) => {
   return db.collection('gifs').updateOne(
     {
@@ -65,4 +41,39 @@ const addCaption = (id, caption) => {
   );
 };
 
-export { addCaption, client, getAllGifs, getSingleGif, voteForCaption };
+const getAllGifs = () => {
+  return client.callFunction('getAllGifs');
+};
+
+const getSingleGif = id => {
+  return client.callFunction('getSingleGif', [id]);
+};
+
+const searchGifs = query => {
+  return client.callFunction('searchGifs', [query]);
+};
+
+const voteForCaption = (id, caption, direction) => {
+  return db.collection('gifs').updateOne(
+    {
+      '_id': {
+        $oid: id,
+      },
+      'captions.text': caption.text,
+    },
+    {
+      $inc: {
+        'captions.$.votes': direction,
+      },
+    },
+  );
+};
+
+export {
+  addCaption,
+  client,
+  getAllGifs,
+  getSingleGif,
+  searchGifs,
+  voteForCaption,
+};

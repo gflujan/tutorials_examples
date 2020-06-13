@@ -20,7 +20,7 @@ import {
 // Constants
 
 // Utils / Methods
-import { client, getAllGifs } from '../Realm';
+import { client, getAllGifs, searchGifs } from '../Realm';
 
 // Styles
 import '../App.css';
@@ -30,6 +30,7 @@ import '../App.css';
 /* -------------------------------------------------------------------------- */
 const Home = function () {
   const [gifs, setGifs] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     if (!client.auth.user) {
@@ -45,8 +46,34 @@ const Home = function () {
     }
   }, []);
 
+  const executeSearch = event => {
+    event.preventDefault();
+
+    if (searchTerm.length) {
+      searchGifs(searchTerm).then(results => {
+        setSearchTerm('');
+        setGifs(results);
+      });
+    }
+  };
+
+  const handleSearchChangeEvent = event => {
+    const { value } = event.target;
+    setSearchTerm(value);
+  };
+
   return (
     <div className="bg-gray-100">
+      <form onSubmit={e => handleSearchChangeEvent(e)}>
+        <input
+          className="w-full border border-gray-300 block py-2 px-5"
+          name="Search Gifs"
+          onChange={e => handleSearchChangeEvent(e)}
+          placeholder="Search for a gif"
+          type="text"
+          value={searchTerm}
+        />
+      </form>
       <div className="container mx-auto text-center">
         <div className="flex flex-wrap py-5 pb-32">
           {gifs &&
@@ -59,8 +86,7 @@ const Home = function () {
                   <Gif gif={gif} />
                 </Link>
               );
-            })
-          }
+            })}
         </div>
       </div>
     </div>
