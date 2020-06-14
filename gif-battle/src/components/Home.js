@@ -1,5 +1,6 @@
 /* -------------------------------------------------------------------------- */
 /* ALL IMPORTS */
+/* LINK: YouTube Video -- https://www.youtube.com/watch?v=YI3l8uTkZuc&feature=youtu.be&t=5276s */
 /* LINK: GitHub repo for this project -- https://github.com/kukicado/jumpstart */
 /* -------------------------------------------------------------------------- */
 // React
